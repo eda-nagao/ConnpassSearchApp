@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "jp.edainc.connpasssearchapp"
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // Dagger2
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Retrofit2
+    api "com.squareup.retrofit2:retrofit:$retrofit_viersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_viersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_viersion"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    // OkHttp3
+    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Android Architecture Components
+    implementation "android.arch.lifecycle:livedata:$aac_version"
+    implementation "android.arch.lifecycle:runtime:$aac_version"
+    implementation "android.arch.lifecycle:extensions:$aac_version"
+    implementation "android.arch.lifecycle:viewmodel:$aac_version"
+    kapt "android.arch.lifecycle:compiler:$aac_version"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Room
+    api "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-coroutines:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Test
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
